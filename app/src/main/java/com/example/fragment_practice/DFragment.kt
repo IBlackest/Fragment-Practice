@@ -26,7 +26,7 @@ class DFragment : Fragment() {
             parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             parentFragmentManager.commit {
                 replace(R.id.fragment_container, AFragment())
-                    .setReorderingAllowed(true)
+                setReorderingAllowed(true)
             }
         }
     }

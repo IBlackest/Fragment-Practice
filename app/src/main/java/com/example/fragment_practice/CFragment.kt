@@ -27,8 +27,8 @@ class CFragment : Fragment() {
         button.setOnClickListener {
             parentFragmentManager.commit {
                 replace(R.id.fragment_container, DFragment())
-                    .addToBackStack(null)
-                    .setReorderingAllowed(true)
+                addToBackStack(null)
+                setReorderingAllowed(true)
             }
         }
     }

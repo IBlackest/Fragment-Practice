@@ -31,11 +31,10 @@ class BFragment : Fragment() {
         button.setOnClickListener {
             parentFragmentManager.commit {
                 replace(R.id.fragment_container, getFragmentC())
-                    .addToBackStack(null)
-                    .setReorderingAllowed(true)
+                addToBackStack(null)
+                setReorderingAllowed(true)
             }
         }
-
     }
 
     private fun getFragmentC() = CFragment().apply {

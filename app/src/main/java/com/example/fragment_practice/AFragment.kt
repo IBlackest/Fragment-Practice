@@ -24,11 +24,9 @@ class AFragment : Fragment() {
         button.setOnClickListener {
             parentFragmentManager.commit {
                 replace(R.id.fragment_container, BFragment())
-                    .addToBackStack(null)
-                    .setReorderingAllowed(true)
+                addToBackStack(null)
+                setReorderingAllowed(true)
             }
-
         }
-
     }
 }
