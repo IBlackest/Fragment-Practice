@@ -23,10 +23,12 @@ class DFragment : Fragment() {
 
         val button: TextView = view.findViewById(R.id.button_d)
         button.setOnClickListener {
-            parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-            parentFragmentManager.commit {
-                replace(R.id.fragment_container, AFragment())
-                setReorderingAllowed(true)
+            parentFragmentManager.apply {
+                popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                commit {
+                    replace(R.id.fragment_container, AFragment())
+                    setReorderingAllowed(true)
+                }
             }
         }
     }
