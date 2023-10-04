@@ -6,7 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.commit
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 
 class CFragment : Fragment() {
 
@@ -21,15 +22,16 @@ class CFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val text: TextView = view.findViewById(R.id.text)
-        text.text = requireArguments().getString(BFragment.TEXT)
+        text.text = requireArguments().getString(TEXT)
 
         val button: TextView = view.findViewById(R.id.button_c)
         button.setOnClickListener {
-            parentFragmentManager.commit {
-                replace(R.id.fragment_container, DFragment())
-                addToBackStack(null)
-                setReorderingAllowed(true)
-            }
+            findNavController().navigate(R.id.action_CFragment_to_DFragment)
         }
+    }
+
+    companion object {
+        fun createArgs(text: String): Bundle = bundleOf(TEXT to text)
+        private const val TEXT = "TEXT"
     }
 }

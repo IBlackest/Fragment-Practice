@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.os.bundleOf
-import androidx.fragment.app.commit
+import androidx.navigation.fragment.findNavController
 
 class BFragment : Fragment() {
 
@@ -24,24 +23,16 @@ class BFragment : Fragment() {
 
         val toolbar: Toolbar = view.findViewById(R.id.toolbar_b)
         toolbar.setNavigationOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
+            findNavController().navigateUp()
         }
 
         val button: TextView = view.findViewById(R.id.button_b)
         button.setOnClickListener {
-            parentFragmentManager.commit {
-                replace(R.id.fragment_container, getFragmentC())
-                addToBackStack(null)
-                setReorderingAllowed(true)
-            }
+            findNavController().navigate(R.id.action_BFragment_to_CFragment, CFragment.createArgs(TEXT))
         }
     }
 
-    private fun getFragmentC() = CFragment().apply {
-        arguments = bundleOf(TEXT to "Hello Fragment C")
-    }
-
     companion object {
-        const val TEXT = "TEXT"
+        const val TEXT = "Hello Fragment C"
     }
 }

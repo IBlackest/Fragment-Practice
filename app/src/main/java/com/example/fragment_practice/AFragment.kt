@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.commit
+import androidx.navigation.fragment.findNavController
 
 class AFragment : Fragment() {
 
@@ -22,11 +22,7 @@ class AFragment : Fragment() {
 
         val button: TextView = view.findViewById(R.id.button_a)
         button.setOnClickListener {
-            parentFragmentManager.commit {
-                replace(R.id.fragment_container, BFragment())
-                addToBackStack(null)
-                setReorderingAllowed(true)
-            }
+            findNavController().navigate(R.id.action_AFragment_to_BFragment)
         }
     }
 }
