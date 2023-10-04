@@ -28,7 +28,7 @@ class BFragment : Fragment() {
 
         val button: TextView = view.findViewById(R.id.button_b)
         button.setOnClickListener {
-            findNavController().navigate(R.id.action_BFragment_to_CFragment, CFragment.createArgs(TEXT))
+            findNavController().navigate(BFragmentDirections.actionBFragmentToCFragment(TEXT))
         }
     }
 

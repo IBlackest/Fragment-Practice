@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 
 class CFragment : Fragment() {
+
+    private val args: CFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,16 +24,11 @@ class CFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val text: TextView = view.findViewById(R.id.text)
-        text.text = requireArguments().getString(TEXT)
+        text.text = args.text
 
         val button: TextView = view.findViewById(R.id.button_c)
         button.setOnClickListener {
             findNavController().navigate(R.id.action_CFragment_to_DFragment)
         }
-    }
-
-    companion object {
-        fun createArgs(text: String): Bundle = bundleOf(TEXT to text)
-        private const val TEXT = "TEXT"
     }
 }
