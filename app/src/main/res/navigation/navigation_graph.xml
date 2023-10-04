@@ -39,6 +39,8 @@
         tools:layout="@layout/fragment_d" >
         <action
             android:id="@+id/action_DFragment_to_AFragment"
+            app:popUpTo="@+id/navigation_graph"
+            app:popUpToInclusive="true"
             app:destination="@id/AFragment" />
     </fragment>
 </navigation>
