@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.commit
 
 class DFragment : Fragment() {
 
@@ -21,15 +19,11 @@ class DFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val router = App.INSTANCE.router
+
         val button: TextView = view.findViewById(R.id.button_d)
         button.setOnClickListener {
-            parentFragmentManager.apply {
-                popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                commit {
-                    replace(R.id.fragment_container, AFragment())
-                    setReorderingAllowed(true)
-                }
-            }
+            router.newRootScreen(Screens.aScreen())
         }
     }
 }

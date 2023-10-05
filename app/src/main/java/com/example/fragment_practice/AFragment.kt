@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.fragment.app.commit
 
 class AFragment : Fragment() {
 
@@ -20,13 +19,19 @@ class AFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val router = App.INSTANCE.router
+
         val button: TextView = view.findViewById(R.id.button_a)
         button.setOnClickListener {
-            parentFragmentManager.commit {
-                replace(R.id.fragment_container, BFragment())
-                addToBackStack(null)
-                setReorderingAllowed(true)
-            }
+            router.navigateTo(Screens.bScreen())
         }
+
+        /*requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    router.backTo(Screens.aScreen())
+                }
+            })*/
     }
 }

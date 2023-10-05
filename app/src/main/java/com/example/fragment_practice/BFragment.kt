@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.Toolbar
-import androidx.core.os.bundleOf
-import androidx.fragment.app.commit
 
 class BFragment : Fragment() {
 
@@ -22,26 +21,28 @@ class BFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val router = App.INSTANCE.router
+
         val toolbar: Toolbar = view.findViewById(R.id.toolbar_b)
         toolbar.setNavigationOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
+            router.exit()
         }
 
         val button: TextView = view.findViewById(R.id.button_b)
         button.setOnClickListener {
-            parentFragmentManager.commit {
-                replace(R.id.fragment_container, getFragmentC())
-                addToBackStack(null)
-                setReorderingAllowed(true)
-            }
+            router.navigateTo(Screens.cScreen(TEXT))
         }
-    }
 
-    private fun getFragmentC() = CFragment().apply {
-        arguments = bundleOf(TEXT to "Hello Fragment C")
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    router.exit()
+                }
+            })
     }
 
     companion object {
-        const val TEXT = "TEXT"
+        const val TEXT = "Hello Fragment C"
     }
 }
