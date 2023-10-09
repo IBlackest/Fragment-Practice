@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.Toolbar
 
 class BFragment : Fragment() {
@@ -32,14 +31,6 @@ class BFragment : Fragment() {
         button.setOnClickListener {
             router.navigateTo(Screens.cScreen(TEXT))
         }
-
-        activity?.onBackPressedDispatcher?.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    router.exit()
-                }
-            })
     }
 
     companion object {

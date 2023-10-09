@@ -25,13 +25,5 @@ class AFragment : Fragment() {
         button.setOnClickListener {
             router.navigateTo(Screens.bScreen())
         }
-
-        /*requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    router.backTo(Screens.aScreen())
-                }
-            })*/
     }
 }
